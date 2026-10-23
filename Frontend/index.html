@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#071b33" />
+  <meta name="description" content="Verify product authenticity using VeriChain blockchain verification." />
+  <title>VeriChain | Product Authentication</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <script src="https://unpkg.com/html5-qrcode" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="background-glow glow-one"></div>
+  <div class="background-glow glow-two"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="VeriChain home">
+      <span class="brand-icon"><i class="fa-solid fa-link"></i></span>
+      <span>Veri<span class="brand-accent">Chain</span></span>
+    </a>
+
+    <nav class="navigation">
+      <a class="nav-link active" href="#verify"><i class="fa-solid fa-magnifying-glass"></i> Verify Product</a>
+      <a class="nav-link" href="#how-it-works"><i class="fa-regular fa-circle-question"></i> How It Works</a>
+      <a class="nav-link" href="#history"><i class="fa-solid fa-clock-rotate-left"></i> Recent Checks</a>
+    </nav>
+
+    <div class="network-status">
+      <span class="status-dot"></span>
+      <span>Blockchain Verification</span>
+    </div>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="eyebrow"><i class="fa-solid fa-shield-halved"></i> TRUSTED PRODUCT AUTHENTICATION</div>
+      <h1>Know what's <span>genuine.</span></h1>
+      <p>Verify product authenticity against blockchain records in seconds.</p>
+
+      <div class="hero-features">
+        <span><i class="fa-solid fa-check-circle"></i> Quick verification</span>
+        <span><i class="fa-solid fa-cubes"></i> Blockchain records</span>
+        <span><i class="fa-solid fa-shield"></i> Clear results</span>
+      </div>
+    </section>
+
+    <section class="verification-layout" id="verify">
+      <div class="verify-panel panel">
+        <div class="panel-heading">
+          <div class="heading-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <div>
+            <h2>Verify a product</h2>
+            <p>Enter a serial number or scan the product QR code.</p>
+          </div>
+        </div>
+
+        <form id="verifyForm">
+          <label for="serial">Product serial number</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-barcode"></i>
+            <input id="serial" name="serial" type="text"
+              placeholder="e.g. SN1001" autocomplete="off" maxlength="100" required />
+            <button class="clear-input" type="button" id="clearInput" aria-label="Clear serial number" title="Clear">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+
+          <button class="btn btn-primary" id="verifyButton" type="submit">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Verify Product</span>
+          </button>
+
+          <button class="btn btn-secondary" id="scanButton" type="button">
+            <i class="fa-solid fa-qrcode"></i>
+            <span>Scan QR Code</span>
+          </button>
+        </form>
+
+        <div class="sample-area">
+          <span>Try a sample</span>
+          <button type="button" class="sample-chip" data-serial="SN1001">SN1001</button>
+          <button type="button" class="sample-chip" data-serial="SN1002">SN1002</button>
+          <button type="button" class="sample-chip" data-serial="SN1031">SN1031</button>
+        </div>
+
+        <div class="scanner-container" id="scannerContainer" hidden>
+          <div class="scanner-header">
+            <strong><i class="fa-solid fa-camera"></i> QR Scanner</strong>
+            <button id="closeScanner" type="button" class="icon-button" aria-label="Close scanner">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <p class="scanner-help">Allow camera access and point it at the product's QR code.</p>
+          <div id="reader"></div>
+          <p id="scannerMessage" class="small-note" aria-live="polite"></p>
+        </div>
+
+        <p class="privacy-note"><i class="fa-solid fa-lock"></i> Results are fetched from your connected verification API.</p>
+      </div>
+
+      <div class="result-panel panel" id="resultPanel" aria-live="polite" aria-atomic="true">
+        <div class="empty-result" id="emptyResult">
+          <div class="result-illustration">
+            <i class="fa-solid fa-box-open"></i>
+            <span class="illustration-shield"><i class="fa-solid fa-shield-halved"></i></span>
+          </div>
+          <span class="result-kicker">YOUR VERIFICATION RESULT</span>
+          <h2>Ready to verify</h2>
+          <p>Enter a product serial number and select Verify Product. Your result will appear here.</p>
+          <div class="empty-tags">
+            <span><i class="fa-solid fa-check"></i> Genuine</span>
+            <span><i class="fa-solid fa-xmark"></i> Unregistered</span>
+          </div>
+        </div>
+        <div id="resultContent" hidden></div>
+      </div>
+    </section>
+
+    <section class="benefits" id="how-it-works">
+      <article class="benefit-card">
+        <div class="benefit-icon blue"><i class="fa-solid fa-bolt"></i></div>
+        <div><h3>Fast verification</h3><p>Check a serial number in seconds.</p></div>
+      </article>
+      <article class="benefit-card">
+        <div class="benefit-icon purple"><i class="fa-solid fa-cubes"></i></div>
+        <div><h3>Blockchain-backed</h3><p>Check records stored on your connected blockchain.</p></div>
+      </article>
+      <article class="benefit-card">
+        <div class="benefit-icon green"><i class="fa-solid fa-shield-heart"></i></div>
+        <div><h3>Clear results</h3><p>Understand whether a product is registered.</p></div>
+      </article>
+    </section>
+
+    <section class="history-panel panel" id="history">
+      <div class="history-heading">
+        <div class="history-title">
+          <div class="heading-icon small-heading-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+          <div><h2>Recent verification checks</h2><p>Your checks in this browser session</p></div>
+        </div>
+        <button class="text-button" id="clearHistory" type="button">Clear history</button>
+      </div>
+
+      <div class="history-table-wrap">
+        <table>
+          <thead>
+            <tr><th>Serial number</th><th>Product</th><th>Status</th><th>Time</th></tr>
+          </thead>
+          <tbody id="historyBody">
+            <tr class="history-empty"><td colspan="4">No checks yet. Verify a product to see it here.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="history-footnote"><i class="fa-solid fa-circle-info"></i> History is stored for this browser session only.</p>
+    </section>
+
+    <section class="steps-section">
+      <div class="section-heading">
+        <span class="eyebrow">SIMPLE AND TRANSPARENT</span>
+        <h2>How VeriChain works</h2>
+      </div>
+      <div class="steps-grid">
+        <article class="step-card"><span class="step-number">01</span><i class="fa-solid fa-barcode"></i><h3>Enter or scan</h3><p>Enter the product serial number or scan its QR code.</p></article>
+        <article class="step-card"><span class="step-number">02</span><i class="fa-solid fa-link"></i><h3>Check the record</h3><p>Your application requests the product record from the backend.</p></article>
+        <article class="step-card"><span class="step-number">03</span><i class="fa-solid fa-circle-check"></i><h3>See the result</h3><p>Review the returned registration status and product details.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="brand footer-brand" href="#home"><span class="brand-icon"><i class="fa-solid fa-link"></i></span><span>Veri<span class="brand-accent">Chain</span></span></a>
+    <p>Product authenticity verification powered by blockchain technology.</p>
+    <span class="footer-label"><i class="fa-solid fa-shield-halved"></i> VeriChain Demo</span>
+  </footer>
+</body>
+</html>

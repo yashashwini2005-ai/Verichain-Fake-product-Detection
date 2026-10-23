@@ -1,0 +1,33 @@
+# Secrets
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+
+# Python
+venv/
+.venv/
+**/venv/
+**/.venv/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+
+# Node.js
+node_modules/
+**/node_modules/
+
+# Hardhat generated files
+cache/
+artifacts/
+typechain/
+typechain-types/
+coverage/
+coverage.json
+ignition/deployments/chain-31337/
+
+# Logs and local files
+*.log
+.DS_Store
+Thumbs.db

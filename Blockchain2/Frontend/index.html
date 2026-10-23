@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VeriChain - Fake Product Detection</title>
+
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <h1>🔗 VeriChain</h1>
+
+
+    <h2>
+        Fake Product Detection using Blockchain
+    </h2>
+
+
+
+    <p>
+        Scan product QR code or enter serial number to verify authenticity.
+    </p>
+
+
+
+
+    <!-- Product Serial Number -->
+
+    <input
+
+        type="text"
+
+        id="serial"
+
+        placeholder="Enter Product Serial Number"
+
+        autocomplete="off"
+
+    >
+
+
+
+
+
+    <!-- QR Scan Button -->
+
+    <button
+
+        type="button"
+
+        onclick="startScanner()">
+
+        📷 Scan QR Code
+
+    </button>
+
+
+
+
+
+    <!-- QR Scanner Display -->
+
+    <div
+
+        id="reader">
+
+    </div>
+
+
+
+
+
+    <!-- Verify Button -->
+
+    <button
+
+        type="button"
+
+        onclick="verifyProduct()">
+
+        🔍 Verify Product
+
+    </button>
+
+
+
+
+
+    <!-- Result Section -->
+
+    <div
+
+        id="result">
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+<!-- QR Scanner Library -->
+
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+
+
+
+
+<!-- Your Script -->
+
+<script src="script.js"></script>
+
+
+
+</body>
+
+</html>
